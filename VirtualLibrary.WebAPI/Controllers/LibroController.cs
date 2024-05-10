@@ -11,7 +11,7 @@ namespace VirtualLibrary.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class LibroController : ControllerBase
     {
         private readonly IGenericRepository<Libro> _repository;
@@ -133,16 +133,6 @@ namespace VirtualLibrary.WebAPI.Controllers
             bool existAutor = _validationsService.AutorExists(libro.AutorIdAutor);
             bool existGenero = _validationsService.GeneroExists(libro.GeneroIdGenero);
             bool existEditorial = _validationsService.EditorialExists(libro.EditorialIdEditorial);
-            //bool existLibro = _validationsService.LibroExists(id);
-
-            //if (!existLibro)
-            //{
-            //    return StatusCode(StatusCodes.Status404NotFound, new
-            //    {
-            //        message = "Libro no encontrado",
-            //        result = ""
-            //    });
-            //}
 
             if (!existAutor)
             {

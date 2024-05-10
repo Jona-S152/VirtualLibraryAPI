@@ -9,7 +9,7 @@ namespace VirtualLibrary.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class GeneroController : ControllerBase
     {
         private readonly IGenericRepository<Genero> _repository;

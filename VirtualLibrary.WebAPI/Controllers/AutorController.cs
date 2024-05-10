@@ -10,7 +10,7 @@ namespace VirtualLibrary.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class AutorController : ControllerBase
     {
         private readonly IGenericRepository<Autor> _repository;

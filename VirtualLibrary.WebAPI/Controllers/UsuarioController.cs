@@ -10,7 +10,7 @@ namespace VirtualLibrary.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin, Superadmin")]
+    //[Authorize(Roles = "Admin, Superadmin")]
     public class UsuarioController : ControllerBase
     {
         private readonly IGenericRepository<Usuario> _repository;
