@@ -1,0 +1,77 @@
+CREATE TABLE Autor(
+	AutorId INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	Nombre VARCHAR(30),
+	Nacionalidad VARCHAR(20),
+	AñoNacimiento INT
+);
+
+SELECT * FROM Autor;
+
+CREATE TABLE Editorial(
+	EditorialId INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	Nombre VARCHAR(30),
+	Pais VARCHAR(20),
+	AñoFundacion INT
+);
+
+SELECT * FROM Autor;
+
+CREATE TABLE Genero(
+	GeneroId INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	Nombre VARCHAR(20),
+	Descripcion VARCHAR(200)
+);
+
+SELECT * FROM Genero;
+
+CREATE TABLE Libro(
+	LibroId INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	Titulo VARCHAR(50),
+	AutorIdAutor INT,
+	FOREIGN KEY (AutorIdAutor) REFERENCES Autor(AutorId),
+	GeneroIdGenero INT,
+	FOREIGN KEY (GeneroIdGenero) REFERENCES Genero(GeneroId),
+	EditorialIdEditorial INT,
+	FOREIGN KEY (EditorialIdEditorial) REFERENCES Editorial(EditorialId),
+	AñoPublicacion INT,
+	Descripcion VARCHAR(200)
+);
+
+SELECT * FROM Libro;
+
+CREATE TABLE Usuario(
+	IdUsuario INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	Nombre VARCHAR(50),
+	CorreoElectronico VARCHAR(50),
+	Contraseña VARCHAR(10)
+);
+
+SELECT * FROM Usuario;
+
+CREATE TABLE Rol(
+	IdRol INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	Nombre VARCHAR(10)
+);
+
+SELECT * FROM Rol;
+
+CREATE TABLE RolUsuarios(
+	RolIdRol INT,
+	FOREIGN KEY (RolIdRol) REFERENCES Rol(IdRol),
+	UsuarioIdUsuario INT,
+	FOREIGN KEY (UsuarioIdUsuario) REFERENCES Usuario(IdUsuario)
+);
+
+SELECT * FROM RolUsuarios;
+
+INSERT INTO Usuario(Nombre, CorreoElectronico, Contraseña) VALUES ('Super admin', 'Sadmin@mail.com', '1234');
+INSERT INTO Usuario(Nombre, CorreoElectronico, Contraseña) VALUES ('Admin', 'Admin@mail.com', '1234');
+INSERT INTO Usuario(Nombre, CorreoElectronico, Contraseña) VALUES ('Normal user', 'Nuser@mail.com', '1234');
+
+INSERT INTO Rol(Nombre) VALUES ('Superadmin');
+INSERT INTO Rol(Nombre) VALUES ('Admin');
+INSERT INTO Rol(Nombre) VALUES ('User');
+
+INSERT INTO RolUsuarios(RolIdRol, UsuarioIdUsuario) VALUES (1, 1);
+INSERT INTO RolUsuarios(RolIdRol, UsuarioIdUsuario) VALUES (2, 2);
+INSERT INTO RolUsuarios(RolIdRol, UsuarioIdUsuario) VALUES (3, 3);
